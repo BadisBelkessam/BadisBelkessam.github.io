@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Badis Belkessam – AI Engineer</title>
+<meta name="description" content="Portfolio of Badis Belkessam: LLMs, RAG and applied machine learning systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--periwinkle:#C8D4FF;--lemon:#FFE45C;--mint:#8BF0C8;--pink:#FFB3CF;--lilac:#D9C2FF;--blue:#2F3BFF;--ink:#14142B;
+--bg:var(--periwinkle);--fg:var(--ink);
+--display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;--body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:1.1rem;line-height:1.55;transition:background .7s,color .7s;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid currentColor;outline-offset:4px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1;letter-spacing:-.03em}
+h2{font-size:clamp(2.4rem,7vw,5rem)}
+section{min-height:100vh;padding:14vh max(8vw,64px) 14vh 6vw;display:flex;flex-direction:column;justify-content:center;max-width:1200px;margin:auto}
+p{max-width:62ch}
+.lead{margin-top:1.1rem;font-size:1.25rem}
+
+/* blob */
+.blob{--s:1;width:calc(220px*var(--s));height:calc(200px*var(--s));background:var(--blue);border-radius:48% 52% 45% 55%/55% 50% 50% 45%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(14px*var(--s));cursor:pointer;border:0;transition:transform .25s cubic-bezier(.3,1.8,.5,1),background .7s;animation:breathe 4s ease-in-out infinite}
+.eyes{display:flex;gap:calc(22px*var(--s))}
+.eye{width:calc(52px*var(--s));height:calc(52px*var(--s));background:#fff;border-radius:50%;position:relative;overflow:hidden}
+.pupil{position:absolute;left:50%;top:50%;width:46%;height:46%;margin:-23% 0 0 -23%;background:var(--ink);border-radius:50%}
+.mouth{width:calc(46px*var(--s));height:calc(22px*var(--s));border:calc(5px*var(--s)) solid var(--ink);border-top:0;border-radius:0 0 90px 90px;transition:all .3s}
+.blob.ow .mouth{height:calc(26px*var(--s));width:calc(26px*var(--s));border-top:calc(5px*var(--s)) solid var(--ink);border-radius:50%}
+.blob.squish{transform:scale(1.12,.82)}
+.blob.dizzy{animation:spin .9s ease}
+@keyframes breathe{50%{border-radius:52% 48% 55% 45%/48% 55% 45% 52%}}
+@keyframes spin{to{transform:rotate(720deg)}}
+
+/* hero */
+#hero{align-items:flex-start}
+.stage{display:flex;align-items:center;gap:1.5rem}
+.bubble{background:#fff;color:var(--ink);padding:.7rem 1.1rem;border-radius:20px 20px 20px 4px;font-weight:600;max-width:17rem;min-height:2.9rem;display:flex;align-items:center}
+#hero h1{font-size:clamp(3.4rem,12vw,10rem);margin:2rem 0 1.2rem}
+.role{font-size:clamp(1.3rem,2.8vw,2rem);max-width:28ch;line-height:1.25}
+.status{display:inline-flex;align-items:center;gap:.7rem;margin-top:1.6rem;background:var(--ink);color:#fff;padding:.6rem 1.1rem;border-radius:999px;font-weight:600;font-size:1rem}
+.status::before{content:"";width:.7rem;height:.7rem;border-radius:50%;background:var(--mint);animation:ping 1.6s infinite}
+@keyframes ping{50%{box-shadow:0 0 0 7px rgba(139,240,200,.25)}}
+.hint{margin-top:2.5rem;font-weight:600}
+.hint span{display:inline-block;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* reveal */
+.rev{opacity:.18;transform:translateX(-14px);transition:opacity .6s,transform .6s}
+.rev.on{opacity:1;transform:none}
+.line{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5.2vw,4rem);line-height:1.08;letter-spacing:-.025em;margin-bottom:1.6rem;max-width:22ch}
+
+/* journey */
+.tl{margin-top:3rem;border-left:4px solid var(--ink);padding-left:2rem;display:grid;gap:2.2rem}
+.stop{position:relative;max-width:46rem}
+.stop::before{content:"";position:absolute;left:calc(-2rem - 12px);top:.35rem;width:20px;height:20px;border-radius:50%;background:var(--mint);border:4px solid var(--ink)}
+.stop.now::before{background:var(--blue);animation:ping 1.6s infinite}
+.when{font-weight:600;font-size:.95rem}
+.stop h3{font-size:clamp(1.5rem,3vw,2.1rem);margin:.2rem 0}
+.where{font-weight:600;opacity:.8;margin-bottom:.5rem}
+.stop ul{padding-left:1.2rem;display:grid;gap:.4rem;font-size:1rem}
+
+/* projects */
+.cards{display:grid;gap:1.4rem;margin-top:3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));align-items:start}
+details{border:3px solid var(--ink);border-radius:26px;padding:1.4rem 1.5rem;background:#fff;color:var(--ink);transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+details:nth-child(odd){transform:rotate(-1.2deg)}details:nth-child(even){transform:rotate(1deg)}
+details:hover,details[open]{transform:rotate(0) translateY(-4px)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:1.4rem;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+.t{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1.1;letter-spacing:-.02em}
+.t small{display:block;margin-top:.5rem;font:400 .95rem/1.35 var(--body);letter-spacing:0;opacity:.7}
+details ul{margin-top:1.1rem;padding-left:1.2rem;display:grid;gap:.5rem;font-size:1rem}
+.metric{display:inline-block;margin-top:1rem;background:var(--lemon);padding:.25rem .8rem;border-radius:999px;font-weight:600;font-size:.95rem}
+
+/* lab */
+.ask{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.6rem}
+.ask input{flex:1 1 240px;font:inherit;padding:.9rem 1.3rem;border:3px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink)}
+.btn,.chip{font:inherit;font-weight:600;border:3px solid var(--ink);border-radius:999px;cursor:pointer;transition:transform .2s cubic-bezier(.3,1.8,.5,1),background .2s,color .2s}
+.btn{padding:.9rem 1.6rem;background:var(--ink);color:#fff}
+.chip{padding:.55rem 1.1rem;background:transparent;color:var(--ink);font-size:1rem}
+.btn:hover,.chip:hover{transform:rotate(-3deg) scale(1.05)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--lilac);animation:pop .4s}
+@keyframes pop{40%{transform:scale(1.25) rotate(5deg)}}
+.sugg{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.out{margin-top:1.4rem;display:grid;gap:.9rem;max-width:46rem;min-height:3rem}
+.log{font:.95rem/1.4 ui-monospace,Menlo,Consolas,monospace;opacity:.8}
+.hit{background:#fff;color:var(--ink);border-radius:20px;padding:1rem 1.3rem;font-size:1rem}
+.hit b{display:block;font-size:.9rem;margin-bottom:.3rem}
+.bar{height:8px;border-radius:8px;background:var(--lilac);margin-bottom:.6rem;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);transition:width .7s}
+.skills{display:grid;gap:1.3rem;margin-top:3.5rem}
+.skills h3{font-size:1.3rem;margin-bottom:.7rem}
+.row{display:flex;flex-wrap:wrap;gap:.6rem}
+
+/* next + contact */
+#next .line{max-width:24ch}
+.btns{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.6rem}
+.cta{display:inline-block;text-decoration:none;font-weight:600;padding:1rem 1.8rem;border-radius:999px;border:3px solid var(--lemon);transition:transform .2s cubic-bezier(.3,1.8,.5,1),background .2s,color .2s}
+.cta.main{background:var(--lemon);color:var(--ink)}
+.cta:hover{transform:translateY(-4px) rotate(-2deg)}
+.cta:not(.main):hover{background:var(--lemon);color:var(--ink)}
+.hello{margin-top:2.4rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.hello .chip{border-color:var(--lemon);color:var(--lemon)}
+footer{padding:0 6vw 4rem;max-width:1200px;margin:auto;font-size:.95rem;opacity:.8}
+
+/* rider */
+.track{position:fixed;right:21px;top:70px;bottom:70px;width:6px;border-radius:6px;background:currentColor;opacity:.2;z-index:5}
+.rider{position:fixed;right:0;top:0;z-index:6;pointer-events:none;width:48px}
+.rider .blob{--s:.22;animation:none;background:var(--fg)}
+.rider .mouth{border-color:var(--bg)}
+.rbub{position:absolute;right:58px;top:-2px;background:#fff;color:var(--ink);padding:.4rem .8rem;border-radius:14px 14px 4px 14px;font-size:.9rem;font-weight:600;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .3s,transform .3s}
+.rbub.show{opacity:1;transform:none}
+@media (max-width:640px){.stage{flex-direction:column;align-items:flex-start}.blob{--s:.8}.rider .blob{--s:.2}.rbub{display:none}.rider{width:44px}.track{right:19px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rev{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="track" aria-hidden="true"></div>
+<div class="rider" aria-hidden="true">
+  <div class="rbub" id="say"></div>
+  <div class="blob"><div class="eyes"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div><div class="mouth"></div></div>
+</div>
+
+<main>
+<section id="hero" data-bg="--periwinkle" data-fg="--ink" data-say="Follow me down.">
+  <div class="stage">
+    <button class="blob big" aria-label="Poke the blob"><div class="eyes"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div><div class="mouth"></div></button>
+    <div class="bubble" id="bubble" aria-live="polite">Hi! Poke me.</div>
+  </div>
+  <h1>Hi, I’m Badis.</h1>
+  <p class="role">AI engineer building LLM, RAG and applied machine learning systems.</p>
+  <p class="status">Researching LLM memory in Paris right now</p>
+  <p class="hint"><span>↓</span> Scroll. The blob follows you.</p>
+</section>
+
+<section id="intro" data-bg="--lemon" data-fg="--ink" data-say="Story time.">
+  <p class="line rev">I study AI at ENSIA in Algiers.</p>
+  <p class="line rev">But classrooms only go so far, so I went and built things.</p>
+  <p class="line rev">Road cameras, dashboards, a dialect chatbot, a research lab in Paris.</p>
+  <p class="line rev">Here’s the path so far.</p>
+</section>
+
+<section id="journey" data-bg="--mint" data-fg="--ink" data-say="Three internships. Two countries.">
+  <h2>The road so far</h2>
+  <div class="tl">
+    <div class="stop rev"><div class="when">2023 – 2025</div><h3>Bachelor’s in Artificial Intelligence</h3><div class="where">ENSIA, Algeria</div>
+      <ul><li>Machine learning, deep learning, NLP, data mining, statistics and software engineering.</li></ul></div>
+    <div class="stop rev"><div class="when">2026 – ongoing</div><h3>Engineering Master’s in AI</h3><div class="where">ENSIA, Algeria</div>
+      <ul><li>Continuing at the same school, now focused on LLM and retrieval systems.</li></ul></div>
+    <div class="stop rev"><div class="when">March – May 2026</div><h3>Development & BI Intern</h3><div class="where">Nroho, Technological Pole, Algeria</div>
+      <ul><li>Tracked and analyzed business KPIs, then designed better ways to represent and improve them.</li><li>Built dashboards and the connectors behind them to support data-driven decisions.</li></ul></div>
+    <div class="stop rev"><div class="when">September – October 2026</div><h3>AI Engineer Intern, Computer Vision</h3><div class="where">V-Taxi, Algiers</div>
+      <ul><li>Built and trained YOLO models for road camera detection, from data preparation to evaluation.</li><li>Designed end-to-end annotation pipelines that produced labeled training data and cut annotation costs.</li></ul></div>
+    <div class="stop now rev"><div class="when">October 2026 – now</div><h3>AI Research Intern, LLM Memory & Retrieval</h3><div class="where">Université Paris-Est Créteil, Paris</div>
+      <ul><li>Researching retrieval and temporal decision-making over organizational knowledge, in a study of AI as a multiplier in organizations.</li><li>Designing and testing memory layers for LLMs and retrieval systems.</li></ul></div>
+  </div>
+</section>
+
+<section id="work" data-bg="--pink" data-fg="--ink" data-say="Open the cards. They don’t bite.">
+  <h2>Things I’ve built</h2>
+  <p class="lead">Tap a card to see what’s inside.</p>
+  <div class="cards">
+    <details><summary><span class="t">RAG system over arXiv papers<small>Python, LangGraph, Langfuse, vector DB</small></span></summary>
+      <ul><li>Built ETL pipelines that ingest, store and index arXiv papers for hybrid semantic and lexical retrieval.</li><li>Added a LangGraph agentic layer and Langfuse tracing, so every step of the retrieval pipeline can be observed.</li></ul></details>
+    <details><summary><span class="t">Algerian dialect LLM for smoking addiction support<small>Python, QLoRA, NLP</small></span></summary>
+      <ul><li>Collected Algerian dialect samples and designed the architecture.</li><li>Fine-tuned a base model with QLoRA and deployed it in an app offering conversational support.</li></ul></details>
+    <details><summary><span class="t">DNS tunneling detection system<small>Python, machine learning, Kafka, Linux/VPS</small></span></summary>
+      <ul><li>Trained a model to detect DNS tunneling attacks and deployed it end to end on a VPS.</li><li>Raised throughput with caching and Kafka queues feeding worker processes.</li></ul><span class="metric">About 0.9 F1</span></details>
+    <details><summary><span class="t">LLM agents and backend services<small>LangChain, n8n, CrewAI, Django, Docker</small></span></summary>
+      <ul><li>Built multi-step agents that reason, retrieve and call APIs.</li><li>Integrated them into Django REST backends, deployed on Linux/VPS with Docker.</li></ul></details>
+  </div>
+</section>
+
+<section id="lab" data-bg="--lilac" data-fg="--ink" data-say="Go on, ask it something.">
+  <h2>Ask my portfolio</h2>
+  <p class="lead">A tiny retrieval demo. It searches my CV and shows what it found.</p>
+  <form class="ask" id="askForm" onsubmit="return false">
+    <input id="q" type="text" placeholder="Try: what have you built with RAG?" aria-label="Question about Badis">
+    <button class="btn" id="go">Ask</button>
+  </form>
+  <div class="sugg" id="sugg"></div>
+  <div class="out" id="out" aria-live="polite"></div>
+  <div class="skills">
+    <div><h3>Languages</h3><div class="row"><button class="chip" aria-pressed="false">Python</button><button class="chip" aria-pressed="false">SQL</button><button class="chip" aria-pressed="false">JavaScript</button><button class="chip" aria-pressed="false">C++</button><button class="chip" aria-pressed="false">Bash</button></div></div>
+    <div><h3>AI and ML</h3><div class="row"><button class="chip" aria-pressed="false">LLM fine-tuning</button><button class="chip" aria-pressed="false">RAG</button><button class="chip" aria-pressed="false">LangChain</button><button class="chip" aria-pressed="false">LangGraph</button><button class="chip" aria-pressed="false">Langfuse</button><button class="chip" aria-pressed="false">PyTorch</button><button class="chip" aria-pressed="false">scikit-learn</button><button class="chip" aria-pressed="false">Pandas</button><button class="chip" aria-pressed="false">NumPy</button></div></div>
+    <div><h3>Systems</h3><div class="row"><button class="chip" aria-pressed="false">Linux</button><button class="chip" aria-pressed="false">Kafka</button><button class="chip" aria-pressed="false">Docker</button><button class="chip" aria-pressed="false">AWS/VPS</button><button class="chip" aria-pressed="false">Django</button><button class="chip" aria-pressed="false">Git</button></div></div>
+  </div>
+</section>
+
+<section id="next" data-bg="--blue" data-fg="--lemon" data-say="Plot twist: you can hire him.">
+  <p class="line rev">I’m looking for internships and research roles in LLMs, RAG and applied ML.</p>
+  <p class="line rev">I like systems that actually run, get measured and get fixed.</p>
+</section>
+
+<section id="contact" data-bg="--ink" data-fg="--lemon" data-say="Say hi. I’ll wave.">
+  <h2>Let’s talk.</h2>
+  <p class="lead">I work in Arabic, English and French. Tap one and see the blob try.</p>
+  <div class="hello"><button class="chip" lang="ar" data-hi="مرحبا!">Arabic (native)</button><button class="chip" data-hi="Hello!">English (fluent)</button><button class="chip" data-hi="Bonjour !">French (C1)</button></div>
+  <div class="btns">
+    <a class="cta main" href="mailto:badis.belkessam@ensia.edu.dz">Email me</a>
+    <a class="cta" href="https://www.linkedin.com/in/badis-belkessam-361128300/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="cta" href="https://github.com/badis-byte" target="_blank" rel="noopener">GitHub</a>
+    <a class="cta" href="cv.pdf" download>Download my CV</a>
+  </div>
+</section>
+</main>
+<footer>© Badis Belkessam. The blob is a friend. Please be nice to it.</footer>
+
+<script>
+const root=document.documentElement,sayEl=document.getElementById("say");let st;
+function say(t){sayEl.textContent=t;sayEl.classList.add("show");clearTimeout(st);st=setTimeout(()=>sayEl.classList.remove("show"),3000)}
+
+/* chapters: colour + blob commentary */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
+  root.style.setProperty("--bg",`var(${e.target.dataset.bg})`);root.style.setProperty("--fg",`var(${e.target.dataset.fg})`);
+  if(scrollY>200)say(e.target.dataset.say)}),{rootMargin:"-50% 0px -50% 0px"});
+document.querySelectorAll("section[data-bg]").forEach(s=>io.observe(s));
+
+/* reveal on scroll */
+const rio=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("on",e.isIntersecting)),{rootMargin:"-25% 0px -25% 0px"});
+document.querySelectorAll(".rev").forEach(l=>rio.observe(l));
+
+/* eyes follow pointer */
+const pupils=[...document.querySelectorAll(".pupil")];let mx=innerWidth/2,my=innerHeight/2;
+function look(){pupils.forEach(p=>{const r=p.parentElement.getBoundingClientRect(),dx=mx-(r.left+r.width/2),dy=my-(r.top+r.height/2),d=Math.hypot(dx,dy)||1,k=Math.min(d,r.width*.27)/d;p.style.transform=`translate(${dx*k}px,${dy*k}px)`})}
+addEventListener("pointermove",e=>{mx=e.clientX;my=e.clientY;look()});
+
+/* rider */
+const rider=document.querySelector(".rider");
+function move(){const max=root.scrollHeight-innerHeight,p=max>0?scrollY/max:0;rider.style.transform=`translateY(${60+p*(innerHeight-140)}px)`;look()}
+addEventListener("scroll",move,{passive:true});addEventListener("resize",move);move();
+
+/* poke */
+const big=document.querySelector(".blob.big"),bub=document.getElementById("bubble");
+const lines=["Hi! Poke me.","Hey, that tickles.","Ow!","Okay, I like you.","Scroll down. It gets good.","I’m just a blob. The real work is below.","Again? Fine.","Careful, I get dizzy."];let n=0;
+big.addEventListener("click",()=>{n++;bub.textContent=lines[n%lines.length];
+  big.classList.add("squish","ow");setTimeout(()=>big.classList.remove("squish"),160);setTimeout(()=>big.classList.remove("ow"),700);
+  if(n%8===0){bub.textContent="Whoa. Dizzy.";big.classList.add("dizzy");setTimeout(()=>big.classList.remove("dizzy"),950)}});
+
+/* skill chips */
+const cheers=["Good pick.","I use that daily.","Solid choice.","Ask me about that one.","Yes!"];
+document.querySelectorAll(".skills .chip").forEach(c=>c.addEventListener("click",()=>{
+  const on=c.getAttribute("aria-pressed")!=="true";c.setAttribute("aria-pressed",on);if(on)say(cheers[Math.floor(Math.random()*cheers.length)])}));
+document.querySelectorAll("[data-hi]").forEach(c=>c.addEventListener("click",()=>say(c.dataset.hi)));
+
+/* ask my portfolio: tiny keyword retrieval over CV chunks */
+const docs=[
+["RAG over arXiv","Built a production-style RAG system over arXiv papers: ETL ingestion, hybrid semantic and lexical retrieval, a LangGraph agentic layer and Langfuse tracing.","rag retrieval arxiv langgraph langfuse vector search agent observability hybrid papers"],
+["Dialect LLM","Fine-tuned a base model with QLoRA on Algerian dialect samples I collected, then deployed it in an app offering conversational support for smoking addiction.","llm fine-tuning qlora lora nlp dialect arabic algerian addiction health chatbot language"],
+["DNS tunneling detector","Trained an ML model that detects DNS tunneling attacks at about 0.9 F1, deployed on a VPS with caching and Kafka queues feeding worker processes.","security dns tunneling kafka f1 score machine learning vps deploy deployment cybersecurity"],
+["LLM agents","Built multi-step agents with LangChain, CrewAI and n8n inside Django REST backends, deployed with Docker on Linux/VPS.","agents agent langchain crewai n8n django docker backend automation api"],
+["Computer vision at V-Taxi","Trained YOLO-based vision models for road camera detection and built annotation pipelines that cut labeling costs.","computer vision yolo annotation data camera detection road v-taxi internship"],
+["BI at Nroho","Analyzed business KPIs and built dashboards with the connectors behind them, to support data-driven decisions.","dashboard bi business intelligence kpi data analytics sql nroho internship"],
+["Research in Paris","At Université Paris-Est Créteil I research memory layers for LLMs and retrieval over organizational knowledge, including temporal decision-making.","research paris upec memory llm retrieval organization temporal creteil france lab internship"],
+["Education","Engineering Master’s in AI at ENSIA (2026 on), after a Bachelor’s there (2023–2025). Coursework: ML, deep learning, NLP, data mining, statistics, software engineering.","education study studies university ensia master bachelor degree courses coursework school algeria"],
+["Languages spoken","Arabic (native), English (fluent), French (C1).","language spoken speak arabic english french fluent"],
+["Tech stack","Python, SQL, JavaScript, C++, Bash. PyTorch, scikit-learn, Pandas, NumPy. Linux, Docker, Kafka, AWS/VPS, Git.","skills stack tools programming python pytorch sql linux git aws technologies"],
+["Where and when","Based between Algiers and Paris right now, open to internships and research roles. Email: badis.belkessam@ensia.edu.dz.","where based location live contact email hire hiring available availability internship paris algiers"]];
+const stop=new Set("what have you with the a an do does did are is your i me my of in on to and or which where how about can tell any from for it this that".split(" "));
+const tok=s=>s.toLowerCase().replace(/[^a-z0-9\u00c0-\u017f+#.\- ]/g," ").split(/\s+/).filter(w=>w&&!stop.has(w)).map(w=>w.length>3?w.replace(/s$/,""):w);
+const idx=docs.map(d=>({d,t:new Set(tok(d[1]+" "+d[0])),k:new Set(tok(d[2]))}));
+const out=document.getElementById("out"),qi=document.getElementById("q");let tm;
+function ask(q){q=q.trim();if(!q)return;clearTimeout(tm);
+  out.innerHTML='<div class="log">embedding query… searching 11 chunks…</div>';
+  tm=setTimeout(()=>{const qt=tok(q);
+    const r=idx.map(x=>({d:x.d,s:qt.reduce((a,w)=>a+(x.k.has(w)?2:0)+(x.t.has(w)?1:0),0)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,2);
+    if(!r.length){out.innerHTML='<div class="hit">Nothing relevant found. Try RAG, Kafka, computer vision, Paris or languages.</div>';say("Hmm. Nothing found.");return}
+    out.innerHTML='<div class="log">retrieved '+r.length+' chunk'+(r.length>1?"s":"")+', ranked by score</div>'+
+      r.map(x=>'<div class="hit"><div class="bar"><i style="width:0" data-w="'+Math.round(x.s/r[0].s*100)+'%"></i></div><b>'+x.d[0]+' (score '+x.s+')</b>'+x.d[1]+'</div>').join("");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>out.querySelectorAll("i").forEach(i=>i.style.width=i.dataset.w)));say("Found it!")},650)}
+document.getElementById("go").addEventListener("click",()=>ask(qi.value));
+qi.addEventListener("keydown",e=>{if(e.key==="Enter")ask(qi.value)});
+["What have you built with RAG?","Any computer vision experience?","Which languages do you speak?","Tell me about the DNS project","Where are you based?"].forEach(s=>{
+  const b=document.createElement("button");b.className="chip";b.textContent=s;b.onclick=()=>{qi.value=s;ask(s)};document.getElementById("sugg").appendChild(b)});
+</script>
+</body>
+</html>
